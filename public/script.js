@@ -127,7 +127,11 @@ function toggleFavourite(type, item) {
     favouriteItems[type].splice(idx, 1);
     showToast('Removed from favourites 💔');
   } else {
-    favouriteItems[type].push(item);
+    const exists = favouriteItems[type].some((f) => f.id === item.id);
+
+    if (!exists) {
+      favouriteItems[type].push(item);
+    }
     showToast('Added to favourites ❤️');
   }
   saveFavourites();
